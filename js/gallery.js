@@ -89,13 +89,15 @@ container.insertAdjacentHTML("beforeend", createGallery(images));
 container.addEventListener("click", handleClick);
 
 function handleClick(event) {
-  if (event.target.classList.contains("gallery")) {
-    return;
-  }
+  const img = event.target.closest(".gallery-image");
+  if (!img) return;
+  // if (event.target.classList.contains("gallery")) {
+  //   return;
+  // }
   event.preventDefault();
   basicLightbox
     .create(
-      `<img src="${event.target.dataset.source}" width="1112" height="640">`
+      `<img src="${event.target.dataset.source}" alt="${event.target.alt}" width="1112" height="640">`
     )
     .show();
 }
